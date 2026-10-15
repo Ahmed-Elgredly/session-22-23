@@ -1,0 +1,27 @@
+<?php
+
+class Response
+{
+    public static function error(string $msg, int $status = 403): void{
+
+        http_response_code($status);
+
+        echo $msg;
+
+        exit;
+    }
+
+    public static function json(array $data, string $msg = "", int $status = 200){
+        
+        header('Content-Type: application/json; charset=utf-8');
+    
+        http_response_code($status);
+    
+        echo json_encode([
+            "message" => $msg,
+            "data" => $data,
+        ]);
+
+        exit;
+    }
+}
